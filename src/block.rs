@@ -94,20 +94,6 @@ impl fmt::Debug for Block {
 
 pub type Blocks = Vec<Block>;
 
-pub fn blocks_to_string(blocks: &[Block]) -> String {
-    let mut s = String::from("[");
-    let mut iter = blocks.iter();
-    if let Some(first) = iter.next() {
-        s.push_str(&first.to_string());
-        for block in iter {
-            s.push_str(", ");
-            s.push_str(&block.to_string());
-        }
-    }
-    s.push(']');
-    s
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -116,23 +102,5 @@ mod tests {
     fn display_block_shunzi() {
         let b = Block::new(Type::Shunzi, 0);
         assert_eq!(format!("{b}"), "(shunzi, 0)");
-    }
-
-    #[test]
-    fn blocks_to_string_empty() {
-        let bs = [];
-        assert_eq!(blocks_to_string(&bs), "[]");
-    }
-
-    #[test]
-    fn blocks_to_string_shunzi() {
-        let bs = [Block::new(Type::Shunzi, 0)];
-        assert_eq!(blocks_to_string(&bs), "[(shunzi, 0)]");
-    }
-
-    #[test]
-    fn blocks_to_string_shunzi_kezi() {
-        let bs = [Block::new(Type::Shunzi, 0), Block::new(Type::Kezi, 33)];
-        assert_eq!(blocks_to_string(&bs), "[(shunzi, 0), (kezi, 33)]");
     }
 }
