@@ -36,7 +36,7 @@ where
     if verbose {
         let max_patterns = map.values().map(|v| v.len()).max().unwrap_or(0);
         println!("number of single color hands: {}", map.len());
-        println!("max number of decomposition pattern: {}\n", max_patterns);
+        println!("max number of decomposition patterns: {}\n", max_patterns);
     }
 
     map

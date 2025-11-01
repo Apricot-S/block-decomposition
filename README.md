@@ -17,7 +17,7 @@ block-decomposition$ cargo run
 
 ```txt
 number of single color hands: 1723
-max number of decomposition pattern: 4
+max number of decomposition patterns: 4
 
 map0 == map1
 map0 == map2
