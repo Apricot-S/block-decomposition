@@ -1,7 +1,17 @@
-# block-decomp
+# block-decomposition
 
 Rust port of [On the Algorithm for Decomposing a Given Hand into Blocks (Winning Form) (C++ Implementation)](https://qiita.com/Cryolite/items/e254379b6e99212e6704)  
 (Original article in Japanese: 「与えられた手牌をブロック（和了形）に分解するアルゴリズムについて（C++ 実装） #麻雀 - Qiita」)
+
+## Overview
+
+This repository provides a standalone application for demonstrating mahjong hand decomposition algorithms.
+
+## Build and Run
+
+```sh
+block-decomposition$ cargo run
+```
 
 ## Example Output
 
