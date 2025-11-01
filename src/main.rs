@@ -34,9 +34,9 @@ where
     enumerate_single_color_winning_hand(0, 0, false, &mut single_color_hand, &mut callback);
 
     if verbose {
-        println!("number of single color hands = {}", map.len());
+        println!("number of single color hands: {}", map.len());
         println!(
-            "max number of decomposition pattern = {}\n",
+            "max number of decomposition pattern: {}\n",
             map.values().map(|v| v.len()).max().unwrap_or(0)
         );
     }
