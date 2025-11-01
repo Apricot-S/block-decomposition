@@ -34,11 +34,9 @@ where
     enumerate_single_color_winning_hand(0, 0, false, &mut single_color_hand, &mut callback);
 
     if verbose {
+        let max_patterns = map.values().map(|v| v.len()).max().unwrap_or(0);
         println!("number of single color hands: {}", map.len());
-        println!(
-            "max number of decomposition pattern: {}\n",
-            map.values().map(|v| v.len()).max().unwrap_or(0)
-        );
+        println!("max number of decomposition pattern: {}\n", max_patterns);
     }
 
     map
@@ -46,18 +44,18 @@ where
 
 fn main() {
     let map0 = run_decomposition(decompose_0, true);
-    let map1 = run_decomposition(decompose_1, false);
-    let map2 = run_decomposition(decompose_2, false);
-    let map3 = run_decomposition(decompose_3, false);
 
+    let map1 = run_decomposition(decompose_1, false);
     if map0 == map1 {
         println!("map0 == map1");
     }
 
+    let map2 = run_decomposition(decompose_2, false);
     if map0 == map2 {
         println!("map0 == map2");
     }
 
+    let map3 = run_decomposition(decompose_3, false);
     if map0 == map3 {
         println!("map0 == map3");
     }
