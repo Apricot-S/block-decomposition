@@ -10,7 +10,7 @@ use crate::decomposition_element::DecompositionElement;
 fn decompose_3_impl_(
     single_color_hand: &mut [u8; 9],
     quetou: Option<usize>,
-    result: &mut [DecompositionElement; 34],
+    result: &mut [DecompositionElement; 9],
 ) -> bool {
     for i in 0..9 {
         match single_color_hand[i] {
@@ -106,10 +106,10 @@ fn decompose_3_impl(
     result: &mut Vec<Blocks>,
 ) -> bool {
     let mut hand = *single_color_hand;
-    let mut result_ = [DecompositionElement::default(); 34];
+    let mut result_ = [DecompositionElement::default(); 9];
     let success = decompose_3_impl_(&mut hand, quetou, &mut result_);
 
-    for i in 0..34 {
+    for i in 0..9 {
         while result_[i].num_sequence >= 1 {
             for blocks in result.iter_mut() {
                 blocks.push(Block::new(block::Type::Shunzi, i as u8));
