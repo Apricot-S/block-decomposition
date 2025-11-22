@@ -34,7 +34,11 @@ where
     enumerate_single_color_winning_hand(0, 0, false, &mut single_color_hand, &mut callback);
 
     if verbose {
-        let max_patterns = map.values().map(|v| v.len()).max().unwrap_or(0);
+        let max_patterns = map
+            .values()
+            .map(|v| v.len())
+            .max()
+            .expect("map is non-empty");
         println!("number of single color hands: {}", map.len());
         println!("max number of decomposition patterns: {}\n", max_patterns);
     }
