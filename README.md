@@ -19,12 +19,24 @@ block-decomposition$ cargo run
 ## Example Output
 
 ```txt
-number of single color hands: 1723
-max number of decomposition patterns: 4
-
 map0 == map1
 map0 == map2
 map0 == map3
+
+number of single color hands: 1723
+
+number of hands (head: 0, melds: 0): 1
+number of hands (head: 0, melds: 1): 9
+number of hands (head: 0, melds: 2): 36
+number of hands (head: 0, melds: 3): 84
+number of hands (head: 0, melds: 4): 126
+number of hands (head: 1, melds: 0): 9
+number of hands (head: 1, melds: 1): 72
+number of hands (head: 1, melds: 2): 252
+number of hands (head: 1, melds: 3): 504
+number of hands (head: 1, melds: 4): 630
+
+max number of decomposition patterns: 4
 ```
 
 These results confirm that multiple algorithmic approaches produce equivalent decompositions.
