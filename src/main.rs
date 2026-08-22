@@ -37,14 +37,29 @@ where
 }
 
 fn print_decomposition_statistics(map: &Map) {
+    let mut hand_counts = [[0usize; 5]; 2];
+    for hand in map.keys() {
+        let tile_count = hand.iter().map(|&count| usize::from(count)).sum::<usize>();
+        let has_head = tile_count % 3 == 2;
+        let num_melds = (tile_count - if has_head { 2 } else { 0 }) / 3;
+        hand_counts[usize::from(has_head)][num_melds] += 1;
+    }
+
+    println!("number of single color hands: {}\n", map.len());
+
+    for (has_head, counts) in hand_counts.iter().enumerate() {
+        for (num_melds, count) in counts.iter().enumerate() {
+            let num_heads = u8::from(has_head == 1);
+            println!("number of hands (head: {num_heads}, melds: {num_melds}): {count}");
+        }
+    }
+
     let max_patterns = map.values().map(Vec::len).max().expect("map is non-empty");
-    println!("number of single color hands: {}", map.len());
-    println!("max number of decomposition patterns: {max_patterns}\n");
+    println!("\nmax number of decomposition patterns: {max_patterns}");
 }
 
 fn main() {
     let map0 = run_decomposition(decompose_0);
-    print_decomposition_statistics(&map0);
 
     let map1 = run_decomposition(decompose_1);
     if map0 == map1 {
@@ -60,4 +75,7 @@ fn main() {
     if map0 == map3 {
         println!("map0 == map3");
     }
+
+    println!();
+    print_decomposition_statistics(&map0);
 }
