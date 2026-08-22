@@ -10,13 +10,14 @@ mod decompose_3;
 mod decomposition_element;
 mod enumerate;
 
+use std::collections::HashMap;
+
 use block::Blocks;
 use decompose_0::decompose_0;
 use decompose_1::decompose_1;
 use decompose_2::decompose_2;
 use decompose_3::decompose_3;
 use enumerate::enumerate_single_color_winning_hand;
-use std::collections::HashMap;
 
 type Map = HashMap<[u8; 9], Vec<Blocks>>;
 
