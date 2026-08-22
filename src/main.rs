@@ -39,10 +39,10 @@ where
 fn print_decomposition_statistics(map: &Map) {
     let mut hand_counts = [[0usize; 5]; 2];
     for hand in map.keys() {
-        let tile_count = hand.iter().map(|&count| usize::from(count)).sum::<usize>();
+        let tile_count = hand.iter().sum::<u8>();
         let has_head = tile_count % 3 == 2;
         let num_melds = (tile_count - if has_head { 2 } else { 0 }) / 3;
-        hand_counts[usize::from(has_head)][num_melds] += 1;
+        hand_counts[usize::from(has_head)][usize::from(num_melds)] += 1;
     }
 
     println!("number of single color hands: {}\n", map.len());
