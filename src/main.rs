@@ -20,7 +20,7 @@ use std::collections::HashMap;
 
 type Map = HashMap<[u8; 9], Vec<Blocks>>;
 
-fn run_decomposition<F>(decompose: F, verbose: bool) -> Map
+fn run_decomposition<F>(decompose: F) -> Map
 where
     F: Fn(&[u8; 9]) -> Vec<Blocks>,
 {
@@ -33,29 +33,30 @@ where
     };
     enumerate_single_color_winning_hand(0, 0, false, &mut single_color_hand, &mut callback);
 
-    if verbose {
-        let max_patterns = map.values().map(Vec::len).max().expect("map is non-empty");
-        println!("number of single color hands: {}", map.len());
-        println!("max number of decomposition patterns: {max_patterns}\n");
-    }
-
     map
 }
 
-fn main() {
-    let map0 = run_decomposition(decompose_0, true);
+fn print_decomposition_statistics(map: &Map) {
+    let max_patterns = map.values().map(Vec::len).max().expect("map is non-empty");
+    println!("number of single color hands: {}", map.len());
+    println!("max number of decomposition patterns: {max_patterns}\n");
+}
 
-    let map1 = run_decomposition(decompose_1, false);
+fn main() {
+    let map0 = run_decomposition(decompose_0);
+    print_decomposition_statistics(&map0);
+
+    let map1 = run_decomposition(decompose_1);
     if map0 == map1 {
         println!("map0 == map1");
     }
 
-    let map2 = run_decomposition(decompose_2, false);
+    let map2 = run_decomposition(decompose_2);
     if map0 == map2 {
         println!("map0 == map2");
     }
 
-    let map3 = run_decomposition(decompose_3, false);
+    let map3 = run_decomposition(decompose_3);
     if map0 == map3 {
         println!("map0 == map3");
     }
