@@ -39,7 +39,6 @@ fn decompose_3_impl_(
                 single_color_hand[i + 2] -= 1;
                 result[i].sequences += 1;
                 result[i].triplets += 1;
-                continue;
             }
             3 => {
                 if let Some(q) = quetou
@@ -60,7 +59,6 @@ fn decompose_3_impl_(
 
                 single_color_hand[i] -= 3;
                 result[i].triplets += 1;
-                continue;
             }
             2 => {
                 if let Some(q) = quetou
@@ -79,7 +77,6 @@ fn decompose_3_impl_(
                 single_color_hand[i + 1] -= 2;
                 single_color_hand[i + 2] -= 2;
                 result[i].sequences += 2;
-                continue;
             }
             1 => {
                 if i + 2 >= 9 || single_color_hand[i + 1] == 0 || single_color_hand[i + 2] == 0 {
@@ -90,7 +87,6 @@ fn decompose_3_impl_(
                 single_color_hand[i + 1] -= 1;
                 single_color_hand[i + 2] -= 1;
                 result[i].sequences += 1;
-                continue;
             }
             0 => (),
             _ => unreachable!(),
