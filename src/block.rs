@@ -108,4 +108,34 @@ mod tests {
         let b = Block::new(Type::Shunzi, 0);
         assert_eq!(format!("{b}"), "(shunzi, 0)");
     }
+
+    #[test]
+    fn blocks_are_ordered_by_type_then_tile() {
+        let mut blocks = vec![
+            Block::new(Type::Quetou, 3),
+            Block::new(Type::Shunzi, 5),
+            Block::new(Type::Kezi, 1),
+            Block::new(Type::Gangzi, 7),
+            Block::new(Type::Shunzi, 2),
+            Block::new(Type::Kezi, 0),
+            Block::new(Type::Gangzi, 4),
+            Block::new(Type::Quetou, 1),
+        ];
+
+        blocks.sort();
+
+        assert_eq!(
+            blocks,
+            vec![
+                Block::new(Type::Shunzi, 2),
+                Block::new(Type::Shunzi, 5),
+                Block::new(Type::Kezi, 0),
+                Block::new(Type::Kezi, 1),
+                Block::new(Type::Gangzi, 4),
+                Block::new(Type::Gangzi, 7),
+                Block::new(Type::Quetou, 1),
+                Block::new(Type::Quetou, 3),
+            ]
+        );
+    }
 }
