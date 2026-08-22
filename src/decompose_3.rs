@@ -126,7 +126,7 @@ fn decompose_3_impl(
                 let original_result_size = result.len();
                 result.reserve(3 * original_result_size);
 
-                let clones: Vec<_> = result.to_vec();
+                let clones: Vec<_> = result.clone();
                 result.extend(clones.iter().cloned());
                 result.extend(clones);
 
@@ -163,7 +163,7 @@ fn decompose_3_impl(
                 let original_result_size = result.len();
                 result.reserve(2 * original_result_size);
 
-                let clones: Vec<_> = result.to_vec();
+                let clones: Vec<_> = result.clone();
                 result.extend(clones);
 
                 for r in result.iter_mut().take(original_result_size) {
