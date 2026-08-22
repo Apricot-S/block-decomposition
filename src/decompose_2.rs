@@ -33,55 +33,55 @@ fn decompose_2_impl(
     };
 
     for (d, n) in D_TABLE.iter().zip(N_TABLE) {
-        if has_head && d.num_pair == 1 {
+        if has_head && d.pairs == 1 {
             continue;
         }
         if n != single_color_hand[i] {
             continue;
         }
-        if d.num_sequence > x {
+        if d.sequences > x {
             continue;
         }
-        if d.num_sequence > y {
+        if d.sequences > y {
             continue;
         }
 
         single_color_hand[i] -= n;
         if i + 1 < 9 {
-            single_color_hand[i + 1] -= d.num_sequence;
+            single_color_hand[i + 1] -= d.sequences;
         }
         if i + 2 < 9 {
-            single_color_hand[i + 2] -= d.num_sequence;
+            single_color_hand[i + 2] -= d.sequences;
         }
 
-        for _ in 0..d.num_sequence {
+        for _ in 0..d.sequences {
             blocks.push(Block::new(block::Type::Shunzi, i as u8));
         }
-        if d.num_triplet > 0 {
+        if d.triplets > 0 {
             blocks.push(Block::new(block::Type::Kezi, i as u8));
         }
-        if d.num_pair > 0 {
+        if d.pairs > 0 {
             blocks.push(Block::new(block::Type::Quetou, i as u8));
         }
 
-        let h = has_head || d.num_pair > 0;
+        let h = has_head || d.pairs > 0;
         decompose_2_impl(i + 1, h, single_color_hand, blocks, result);
 
-        if d.num_pair > 0 {
+        if d.pairs > 0 {
             blocks.pop();
         }
-        if d.num_triplet > 0 {
+        if d.triplets > 0 {
             blocks.pop();
         }
-        for _ in 0..d.num_sequence {
+        for _ in 0..d.sequences {
             blocks.pop();
         }
 
         if i + 2 < 9 {
-            single_color_hand[i + 2] += d.num_sequence;
+            single_color_hand[i + 2] += d.sequences;
         }
         if i + 1 < 9 {
-            single_color_hand[i + 1] += d.num_sequence;
+            single_color_hand[i + 1] += d.sequences;
         }
         single_color_hand[i] += n;
     }

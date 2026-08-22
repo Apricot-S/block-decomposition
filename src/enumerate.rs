@@ -36,36 +36,36 @@ pub fn enumerate_single_color_winning_hand<F>(
         if num_melds + m > 4 {
             continue;
         }
-        if has_head && d.num_pair == 1 {
+        if has_head && d.pairs == 1 {
             continue;
         }
         if single_color_hand[i] + n > 4 {
             continue;
         }
-        if d.num_sequence > x {
+        if d.sequences > x {
             continue;
         }
-        if d.num_sequence > y {
+        if d.sequences > y {
             continue;
         }
 
         single_color_hand[i] += n;
         if i + 1 < 9 {
-            single_color_hand[i + 1] += d.num_sequence;
+            single_color_hand[i + 1] += d.sequences;
         }
         if i + 2 < 9 {
-            single_color_hand[i + 2] += d.num_sequence;
+            single_color_hand[i + 2] += d.sequences;
         }
 
         let mm = num_melds + m;
-        let h = has_head || d.num_pair > 0;
+        let h = has_head || d.pairs > 0;
         enumerate_single_color_winning_hand(i + 1, mm, h, single_color_hand, callback);
 
         if i + 2 < 9 {
-            single_color_hand[i + 2] -= d.num_sequence;
+            single_color_hand[i + 2] -= d.sequences;
         }
         if i + 1 < 9 {
-            single_color_hand[i + 1] -= d.num_sequence;
+            single_color_hand[i + 1] -= d.sequences;
         }
         single_color_hand[i] -= n;
     }

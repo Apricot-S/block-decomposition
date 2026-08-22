@@ -25,8 +25,8 @@ fn decompose_3_impl_(
                     single_color_hand[i] -= 4;
                     single_color_hand[i + 1] -= 2;
                     single_color_hand[i + 2] -= 2;
-                    result[i].num_sequence += 2;
-                    result[i].num_pair += 1;
+                    result[i].sequences += 2;
+                    result[i].pairs += 1;
                     continue;
                 }
 
@@ -37,8 +37,8 @@ fn decompose_3_impl_(
                 single_color_hand[i] -= 4;
                 single_color_hand[i + 1] -= 1;
                 single_color_hand[i + 2] -= 1;
-                result[i].num_sequence += 1;
-                result[i].num_triplet += 1;
+                result[i].sequences += 1;
+                result[i].triplets += 1;
                 continue;
             }
             3 => {
@@ -53,13 +53,13 @@ fn decompose_3_impl_(
                     single_color_hand[i] -= 3;
                     single_color_hand[i + 1] -= 1;
                     single_color_hand[i + 2] -= 1;
-                    result[i].num_sequence += 1;
-                    result[i].num_pair += 1;
+                    result[i].sequences += 1;
+                    result[i].pairs += 1;
                     continue;
                 }
 
                 single_color_hand[i] -= 3;
-                result[i].num_triplet += 1;
+                result[i].triplets += 1;
                 continue;
             }
             2 => {
@@ -67,7 +67,7 @@ fn decompose_3_impl_(
                     && q == i
                 {
                     single_color_hand[i] -= 2;
-                    result[i].num_pair += 1;
+                    result[i].pairs += 1;
                     continue;
                 }
 
@@ -78,7 +78,7 @@ fn decompose_3_impl_(
                 single_color_hand[i] -= 2;
                 single_color_hand[i + 1] -= 2;
                 single_color_hand[i + 2] -= 2;
-                result[i].num_sequence += 2;
+                result[i].sequences += 2;
                 continue;
             }
             1 => {
@@ -89,7 +89,7 @@ fn decompose_3_impl_(
                 single_color_hand[i] -= 1;
                 single_color_hand[i + 1] -= 1;
                 single_color_hand[i + 2] -= 1;
-                result[i].num_sequence += 1;
+                result[i].sequences += 1;
                 continue;
             }
             0 => (),
@@ -110,18 +110,18 @@ fn decompose_3_impl(
     let success = decompose_3_impl_(&mut hand, quetou, &mut result_);
 
     for i in 0..9 {
-        while result_[i].num_sequence >= 1 {
+        while result_[i].sequences >= 1 {
             for blocks in result.iter_mut() {
                 blocks.push(Block::new(block::Type::Shunzi, i as u8));
             }
-            result_[i].num_sequence -= 1;
+            result_[i].sequences -= 1;
         }
 
-        if result_[i].num_triplet == 1 {
+        if result_[i].triplets == 1 {
             if i + 3 < 9
-                && result_[i + 1].num_triplet == 1
-                && result_[i + 2].num_triplet == 1
-                && result_[i + 3].num_triplet == 1
+                && result_[i + 1].triplets == 1
+                && result_[i + 2].triplets == 1
+                && result_[i + 3].triplets == 1
             {
                 let original_result_size = result.len();
                 result.reserve(3 * original_result_size);
@@ -155,14 +155,11 @@ fn decompose_3_impl(
                     r.push(Block::new(block::Type::Kezi, (i + 3) as u8));
                 }
 
-                result_[i].num_triplet -= 1;
-                result_[i + 1].num_triplet -= 1;
-                result_[i + 2].num_triplet -= 1;
-                result_[i + 3].num_triplet -= 1;
-            } else if i + 2 < 9
-                && result_[i + 1].num_triplet == 1
-                && result_[i + 2].num_triplet == 1
-            {
+                result_[i].triplets -= 1;
+                result_[i + 1].triplets -= 1;
+                result_[i + 2].triplets -= 1;
+                result_[i + 3].triplets -= 1;
+            } else if i + 2 < 9 && result_[i + 1].triplets == 1 && result_[i + 2].triplets == 1 {
                 let original_result_size = result.len();
                 result.reserve(2 * original_result_size);
 
@@ -181,22 +178,22 @@ fn decompose_3_impl(
                     r.push(Block::new(block::Type::Shunzi, i as u8));
                 }
 
-                result_[i].num_triplet -= 1;
-                result_[i + 1].num_triplet -= 1;
-                result_[i + 2].num_triplet -= 1;
+                result_[i].triplets -= 1;
+                result_[i + 1].triplets -= 1;
+                result_[i + 2].triplets -= 1;
             } else {
                 for blocks in result.iter_mut() {
                     blocks.push(Block::new(block::Type::Kezi, i as u8));
                 }
-                result_[i].num_triplet -= 1;
+                result_[i].triplets -= 1;
             }
         }
 
-        if result_[i].num_pair == 1 {
+        if result_[i].pairs == 1 {
             for blocks in result.iter_mut() {
                 blocks.push(Block::new(block::Type::Quetou, i as u8));
             }
-            result_[i].num_pair -= 1;
+            result_[i].pairs -= 1;
         }
     }
 
