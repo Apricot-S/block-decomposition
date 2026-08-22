@@ -55,13 +55,13 @@ fn decompose_2_impl(
         }
 
         for _ in 0..d.sequences {
-            blocks.push(Block::new(block::Type::Shunzi, i as u8));
+            blocks.push(Block::new(block::Type::Shunzi, i));
         }
         if d.triplets > 0 {
-            blocks.push(Block::new(block::Type::Kezi, i as u8));
+            blocks.push(Block::new(block::Type::Kezi, i));
         }
         if d.pairs > 0 {
-            blocks.push(Block::new(block::Type::Quetou, i as u8));
+            blocks.push(Block::new(block::Type::Quetou, i));
         }
 
         let h = has_head || d.pairs > 0;

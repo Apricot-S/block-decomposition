@@ -31,7 +31,7 @@ fn decompose_1_impl(
         single_color_hand[i] -= 1;
         single_color_hand[i + 1] -= 1;
         single_color_hand[i + 2] -= 1;
-        blocks.push(Block::new(block::Type::Shunzi, i as u8));
+        blocks.push(Block::new(block::Type::Shunzi, i));
         decompose_1_impl(i, single_color_hand, blocks, result);
         blocks.pop();
         single_color_hand[i + 2] += 1;
@@ -41,7 +41,7 @@ fn decompose_1_impl(
 
     if single_color_hand[i] >= 3 {
         single_color_hand[i] -= 3;
-        blocks.push(Block::new(block::Type::Kezi, i as u8));
+        blocks.push(Block::new(block::Type::Kezi, i));
         decompose_1_impl(i + 1, single_color_hand, blocks, result);
         blocks.pop();
         single_color_hand[i] += 3;
@@ -68,7 +68,7 @@ pub fn decompose_1(single_color_hand: &[u8; 9]) -> Vec<Blocks> {
 
                 if !tmp_result.is_empty() {
                     for blocks in &mut tmp_result {
-                        blocks.push(Block::new(block::Type::Quetou, quetou as u8));
+                        blocks.push(Block::new(block::Type::Quetou, quetou));
                     }
                     result.extend(tmp_result);
                 }

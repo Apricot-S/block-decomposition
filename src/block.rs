@@ -35,8 +35,13 @@ pub struct Block {
 }
 
 impl Block {
-    #[inline]
-    pub const fn new(ty: Type, tile: u8) -> Self {
+    pub fn new<T>(ty: Type, tile: T) -> Self
+    where
+        T: TryInto<u8>,
+    {
+        let tile = tile
+            .try_into()
+            .unwrap_or_else(|_| panic!("tile number must fit in u8"));
         debug_assert!(tile < 34);
         let pack = ((ty as u8) << 6) | tile;
         Self { pack }

@@ -22,7 +22,7 @@ fn decompose_0_impl(
 
     if single_color_hand[i] >= 3 {
         single_color_hand[i] -= 3;
-        blocks.push(Block::new(block::Type::Kezi, i as u8));
+        blocks.push(Block::new(block::Type::Kezi, i));
         decompose_0_impl(i, has_head, single_color_hand, blocks, result);
         blocks.pop();
         single_color_hand[i] += 3;
@@ -30,7 +30,7 @@ fn decompose_0_impl(
 
     if single_color_hand[i] >= 2 && !has_head {
         single_color_hand[i] -= 2;
-        blocks.push(Block::new(block::Type::Quetou, i as u8));
+        blocks.push(Block::new(block::Type::Quetou, i));
         decompose_0_impl(i, true, single_color_hand, blocks, result);
         blocks.pop();
         single_color_hand[i] += 2;
@@ -44,7 +44,7 @@ fn decompose_0_impl(
         single_color_hand[i] -= 1;
         single_color_hand[i + 1] -= 1;
         single_color_hand[i + 2] -= 1;
-        blocks.push(Block::new(block::Type::Shunzi, i as u8));
+        blocks.push(Block::new(block::Type::Shunzi, i));
         decompose_0_impl(i, has_head, single_color_hand, blocks, result);
         blocks.pop();
         single_color_hand[i + 2] += 1;

@@ -112,7 +112,7 @@ fn decompose_3_impl(
     for i in 0..9 {
         while result_[i].sequences >= 1 {
             for blocks in result.iter_mut() {
-                blocks.push(Block::new(block::Type::Shunzi, i as u8));
+                blocks.push(Block::new(block::Type::Shunzi, i));
             }
             result_[i].sequences -= 1;
         }
@@ -131,10 +131,10 @@ fn decompose_3_impl(
                 result.extend(clones);
 
                 for r in result.iter_mut().take(original_result_size) {
-                    r.push(Block::new(block::Type::Kezi, i as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 1) as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 2) as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 3) as u8));
+                    r.push(Block::new(block::Type::Kezi, i));
+                    r.push(Block::new(block::Type::Kezi, i + 1));
+                    r.push(Block::new(block::Type::Kezi, i + 2));
+                    r.push(Block::new(block::Type::Kezi, i + 3));
                 }
 
                 for r in result
@@ -142,17 +142,17 @@ fn decompose_3_impl(
                     .skip(original_result_size)
                     .take(original_result_size)
                 {
-                    r.push(Block::new(block::Type::Kezi, i as u8));
-                    r.push(Block::new(block::Type::Shunzi, (i + 1) as u8));
-                    r.push(Block::new(block::Type::Shunzi, (i + 1) as u8));
-                    r.push(Block::new(block::Type::Shunzi, (i + 1) as u8));
+                    r.push(Block::new(block::Type::Kezi, i));
+                    r.push(Block::new(block::Type::Shunzi, i + 1));
+                    r.push(Block::new(block::Type::Shunzi, i + 1));
+                    r.push(Block::new(block::Type::Shunzi, i + 1));
                 }
 
                 for r in result.iter_mut().skip(2 * original_result_size) {
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 3) as u8));
+                    r.push(Block::new(block::Type::Shunzi, i));
+                    r.push(Block::new(block::Type::Shunzi, i));
+                    r.push(Block::new(block::Type::Shunzi, i));
+                    r.push(Block::new(block::Type::Kezi, i + 3));
                 }
 
                 result_[i].triplets -= 1;
@@ -167,15 +167,15 @@ fn decompose_3_impl(
                 result.extend(clones);
 
                 for r in result.iter_mut().take(original_result_size) {
-                    r.push(Block::new(block::Type::Kezi, i as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 1) as u8));
-                    r.push(Block::new(block::Type::Kezi, (i + 2) as u8));
+                    r.push(Block::new(block::Type::Kezi, i));
+                    r.push(Block::new(block::Type::Kezi, i + 1));
+                    r.push(Block::new(block::Type::Kezi, i + 2));
                 }
 
                 for r in result.iter_mut().skip(original_result_size) {
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
-                    r.push(Block::new(block::Type::Shunzi, i as u8));
+                    r.push(Block::new(block::Type::Shunzi, i));
+                    r.push(Block::new(block::Type::Shunzi, i));
+                    r.push(Block::new(block::Type::Shunzi, i));
                 }
 
                 result_[i].triplets -= 1;
@@ -183,7 +183,7 @@ fn decompose_3_impl(
                 result_[i + 2].triplets -= 1;
             } else {
                 for blocks in result.iter_mut() {
-                    blocks.push(Block::new(block::Type::Kezi, i as u8));
+                    blocks.push(Block::new(block::Type::Kezi, i));
                 }
                 result_[i].triplets -= 1;
             }
@@ -191,7 +191,7 @@ fn decompose_3_impl(
 
         if result_[i].pairs == 1 {
             for blocks in result.iter_mut() {
-                blocks.push(Block::new(block::Type::Quetou, i as u8));
+                blocks.push(Block::new(block::Type::Quetou, i));
             }
             result_[i].pairs -= 1;
         }
