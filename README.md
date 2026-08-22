@@ -25,16 +25,17 @@ map0 == map3
 
 number of single color hands: 1723
 
-number of hands (head: 0, melds: 0): 1
-number of hands (head: 0, melds: 1): 9
-number of hands (head: 0, melds: 2): 36
-number of hands (head: 0, melds: 3): 84
-number of hands (head: 0, melds: 4): 126
-number of hands (head: 1, melds: 0): 9
-number of hands (head: 1, melds: 1): 72
-number of hands (head: 1, melds: 2): 252
-number of hands (head: 1, melds: 3): 504
-number of hands (head: 1, melds: 4): 630
+number of hands by head and melds:
+  head: 0, melds: 0: 1
+  head: 0, melds: 1: 9
+  head: 0, melds: 2: 36
+  head: 0, melds: 3: 84
+  head: 0, melds: 4: 126
+  head: 1, melds: 0: 9
+  head: 1, melds: 1: 72
+  head: 1, melds: 2: 252
+  head: 1, melds: 3: 504
+  head: 1, melds: 4: 630
 
 max number of decomposition patterns: 4
 ```

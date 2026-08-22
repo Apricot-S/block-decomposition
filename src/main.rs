@@ -47,11 +47,12 @@ fn print_decomposition_statistics(map: &Map) {
     }
 
     println!("number of single color hands: {}\n", map.len());
+    println!("number of hands by head and melds:");
 
     for (has_head, counts) in hand_counts.iter().enumerate() {
         for (num_melds, count) in counts.iter().enumerate() {
             let num_heads = u8::from(has_head == 1);
-            println!("number of hands (head: {num_heads}, melds: {num_melds}): {count}");
+            println!("  head: {num_heads}, melds: {num_melds}: {count}");
         }
     }
 
