@@ -36,10 +36,8 @@ pub fn enumerate_single_color_winning_hand<F>(
         }
 
         single_color_hand[i] += n;
-        if i + 1 < 9 {
-            single_color_hand[i + 1] += d.sequences;
-        }
         if i + 2 < 9 {
+            single_color_hand[i + 1] += d.sequences;
             single_color_hand[i + 2] += d.sequences;
         }
 
@@ -49,8 +47,6 @@ pub fn enumerate_single_color_winning_hand<F>(
 
         if i + 2 < 9 {
             single_color_hand[i + 2] -= d.sequences;
-        }
-        if i + 1 < 9 {
             single_color_hand[i + 1] -= d.sequences;
         }
         single_color_hand[i] -= n;
