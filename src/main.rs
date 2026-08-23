@@ -12,7 +12,7 @@ mod enumerate;
 
 use std::collections::HashMap;
 
-use block::Blocks;
+use block::{Block, Blocks};
 use decompose_0::decompose_0;
 use decompose_1::decompose_1;
 use decompose_2::decompose_2;
@@ -39,11 +39,13 @@ where
 
 fn print_decomposition_statistics(map: &Map) {
     let mut hand_counts = [[0usize; 5]; 2];
-    for hand in map.keys() {
-        let tile_count = hand.iter().sum::<u8>();
-        let has_head = tile_count % 3 == 2;
-        let num_melds = (tile_count - if has_head { 2 } else { 0 }) / 3;
-        hand_counts[usize::from(has_head)][usize::from(num_melds)] += 1;
+    for decompositions in map.values() {
+        let blocks = decompositions
+            .first()
+            .expect("every enumerated hand has at least one decomposition");
+        let has_head = blocks.iter().any(Block::is_quetou);
+        let num_melds = blocks.iter().filter(|block| !block.is_quetou()).count();
+        hand_counts[usize::from(has_head)][num_melds] += 1;
     }
 
     println!("number of single color hands: {}\n", map.len());
