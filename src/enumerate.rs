@@ -21,17 +21,6 @@ pub fn enumerate_single_color_winning_hand<F>(
         return;
     }
 
-    let x = if i + 1 < 9 {
-        single_color_hand[i + 1]
-    } else {
-        0
-    };
-    let y = if i + 2 < 9 {
-        single_color_hand[i + 2]
-    } else {
-        0
-    };
-
     for ((d, m), n) in D_TABLE.iter().zip(M_TABLE).zip(N_TABLE) {
         if num_melds + m > 4 {
             continue;
@@ -39,13 +28,10 @@ pub fn enumerate_single_color_winning_hand<F>(
         if has_head && d.pairs == 1 {
             continue;
         }
+        if i + 2 >= 9 && d.sequences > 0 {
+            continue;
+        }
         if single_color_hand[i] + n > 4 {
-            continue;
-        }
-        if d.sequences > x {
-            continue;
-        }
-        if d.sequences > y {
             continue;
         }
 
@@ -68,5 +54,25 @@ pub fn enumerate_single_color_winning_hand<F>(
             single_color_hand[i + 1] -= d.sequences;
         }
         single_color_hand[i] -= n;
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn enumerates_all_one_meld_hands() {
+        let mut hand = [0; 9];
+        let mut count = 0;
+        let mut callback = |hand: &[u8; 9]| {
+            if hand.iter().sum::<u8>() == 3 {
+                count += 1;
+            }
+        };
+
+        enumerate_single_color_winning_hand(0, 0, false, &mut hand, &mut callback);
+
+        assert_eq!(count, 16);
     }
 }
