@@ -38,6 +38,11 @@ number of hands by head and melds:
   head: 1, melds: 4: 13259
 
 max number of decomposition patterns: 4
+number of hands by decomposition patterns:
+  patterns: 1: 20175
+  patterns: 2: 1362
+  patterns: 3: 190
+  patterns: 4: 16
 ```
 
 These results confirm that multiple algorithmic approaches produce equivalent decompositions.

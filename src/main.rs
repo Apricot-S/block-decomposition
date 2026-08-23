@@ -59,7 +59,16 @@ fn print_decomposition_statistics(map: &Map) {
     }
 
     let max_patterns = map.values().map(Vec::len).max().expect("map is non-empty");
+    let mut pattern_counts = vec![0usize; max_patterns + 1];
+    for blocks in map.values() {
+        pattern_counts[blocks.len()] += 1;
+    }
+
     println!("\nmax number of decomposition patterns: {max_patterns}");
+    println!("number of hands by decomposition patterns:");
+    for (num_patterns, count) in pattern_counts.iter().enumerate().skip(1) {
+        println!("  patterns: {num_patterns}: {count}");
+    }
 }
 
 fn main() {
