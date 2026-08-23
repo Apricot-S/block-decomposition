@@ -39,7 +39,7 @@ fn decompose_1_impl(
         single_color_hand[i] += 1;
     }
 
-    if single_color_hand[i] >= 3 {
+    if single_color_hand[i] == 3 {
         single_color_hand[i] -= 3;
         blocks.push(Block::new(block::Type::Kezi, i));
         decompose_1_impl(i + 1, single_color_hand, blocks, result);

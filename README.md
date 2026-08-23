@@ -19,6 +19,7 @@ block-decomposition$ cargo run
 ## Example Output
 
 ```txt
+map0 == map1
 map0 == map2
 map0 == map3
 
