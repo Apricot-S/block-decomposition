@@ -6,6 +6,7 @@ authors = ["Apricot S."]
 edition = "2024"
 rust-version = "1.90"
 license = "MIT-0"
+publish = false
 readme = "README.md"
 repository = "https://github.com/Apricot-S/block-decomposition"
 keywords = ["mahjong", "riichi"]
