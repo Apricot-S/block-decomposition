@@ -15,9 +15,7 @@ fn decompose_3_impl_(
     for i in 0..9 {
         match single_color_hand[i] {
             4 => {
-                if let Some(q) = quetou
-                    && q == i
-                {
+                if quetou == Some(i) {
                     if i + 2 >= 9 || single_color_hand[i + 1] < 2 || single_color_hand[i + 2] < 2 {
                         return false;
                     }
@@ -41,9 +39,7 @@ fn decompose_3_impl_(
                 result[i].triplets += 1;
             }
             3 => {
-                if let Some(q) = quetou
-                    && q == i
-                {
+                if quetou == Some(i) {
                     if i + 2 >= 9 || single_color_hand[i + 1] == 0 || single_color_hand[i + 2] == 0
                     {
                         return false;
@@ -61,9 +57,7 @@ fn decompose_3_impl_(
                 result[i].triplets += 1;
             }
             2 => {
-                if let Some(q) = quetou
-                    && q == i
-                {
+                if quetou == Some(i) {
                     single_color_hand[i] -= 2;
                     result[i].pairs += 1;
                     continue;
